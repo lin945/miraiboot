@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.botdemo.dao.DataBaseDao">
+
+<select id="getUser" resultType="java.lang.Long" parameterType="java.lang.String">
+   select qq from qbot where user=#{user}
+</select>
+   <select id="getUserMap" resultType="map" parameterType="java.lang.String">
+   select * from qbot where user=#{user}
+</select>
+
+   <insert id="addUser" >
+      insert into qbot(user,qq) values (#{token},#{qq})
+   </insert>
+</mapper>

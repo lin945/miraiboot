@@ -1,16 +1,15 @@
 package com.example.botdemo.component;
 
-import com.example.botdemo.dao.DataBaseDao;
 import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.BotFactoryJvm;
 import net.mamoe.mirai.utils.BotConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
  * @author lin945
  * @date 2020/8/30 14:05
+ * 机器人模块
  */
 @Component
 @ConfigurationProperties(prefix = "bot.qq")
@@ -24,7 +23,7 @@ public class BotComponent {
         init = 1;
         bot= BotFactoryJvm.newBot(user, password, new BotConfiguration() {
             {
-                //保存设备信息到文件
+                //保存设备信息到文件jar文件同一目录
                 fileBasedDeviceInfo("deviceInfo1.json");
                 // setLoginSolver();xynw
                 // setBotLoggerSupplier();

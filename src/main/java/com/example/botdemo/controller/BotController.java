@@ -20,11 +20,19 @@ public class BotController {
     @Autowired
     private BotDataBashService botDataBashService;
 
+    /**
+     * 获取机器人名字
+     * @return
+     */
     @RequestMapping("/get")
     public String getAll() {
         return botDataBashService.getNick();
     }
 
+    /**
+     * 获取好友
+     * @return
+     */
     @RequestMapping("/getfriends")
     public ResponsePage getFriends() {
         return new ResponsePage().ok(botDataBashService.etFriends());

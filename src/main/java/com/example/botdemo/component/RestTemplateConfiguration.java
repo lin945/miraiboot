@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
  */
 @Configuration
 public class RestTemplateConfiguration {
-    //http请求
+    //http请求bean
     @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate();

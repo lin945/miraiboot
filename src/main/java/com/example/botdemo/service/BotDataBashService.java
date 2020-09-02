@@ -1,6 +1,6 @@
 package com.example.botdemo.service;
 
-import com.example.botdemo.dao.BotDao;
+import com.example.botdemo.component.BotComponent;
 import com.example.botdemo.dao.DataBaseDao;
 import net.mamoe.mirai.contact.ContactList;
 import net.mamoe.mirai.contact.Friend;
@@ -12,20 +12,20 @@ import org.springframework.stereotype.Service;
  * @date 2020/8/30 14:10
  */
 @Service
-public class BotService {
+public class BotDataBashService {
     @Autowired
     private DataBaseDao dataBaseDao;
 
     public String getNick() {
-       return BotDao.getBot().getNick();
+       return BotComponent.getBot().getNick();
     }
 
     public ContactList<Friend> etFriends(){
-        return BotDao.getBot().getFriends();
+        return BotComponent.getBot().getFriends();
     }
 
     public boolean isOnline() {
-        return BotDao.getBot().isOnline();
+        return BotComponent.getBot().isOnline();
     }
 
     public long getQQ(String token) {
@@ -33,7 +33,7 @@ public class BotService {
     }
     public void sendMessage(String token,String mTest){
 
-    BotDao.getBot().getFriend(getQQ(token)).sendMessage(mTest);
+    BotComponent.getBot().getFriend(getQQ(token)).sendMessage(mTest);
     }
 
 }

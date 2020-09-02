@@ -1,11 +1,8 @@
 package com.example.botdemo.schedule;
 
-import com.example.botdemo.dao.BotDao;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-
-import java.util.Date;
 
 /**
  * @author lin945

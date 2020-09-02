@@ -1,4 +1,4 @@
-package com.example.botdemo;
+package com.example.botdemo.entity;
 
 
 /**

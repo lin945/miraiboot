@@ -1,6 +1,6 @@
 package com.example.botdemo.utils;
 
-import com.example.botdemo.ResponsePage;
+import com.example.botdemo.entity.ResponsePage;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

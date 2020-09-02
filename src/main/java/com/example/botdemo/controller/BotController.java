@@ -1,8 +1,8 @@
 package com.example.botdemo.controller;
 
 
-import com.example.botdemo.ResponsePage;
-import com.example.botdemo.service.BotService;
+import com.example.botdemo.entity.ResponsePage;
+import com.example.botdemo.service.BotDataBashService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,21 +18,21 @@ import javax.validation.constraints.NotBlank;
 @RestController
 public class BotController {
     @Autowired
-    private BotService botService;
+    private BotDataBashService botDataBashService;
 
     @RequestMapping("/get")
     public String getAll() {
-        return botService.getNick();
+        return botDataBashService.getNick();
     }
 
     @RequestMapping("/getfriends")
     public ResponsePage getFriends() {
-        return new ResponsePage().ok(botService.etFriends());
+        return new ResponsePage().ok(botDataBashService.etFriends());
     }
 
     @RequestMapping("/send")
     public ResponsePage send(@NotBlank(message = "token不能为空！")String token,@NotBlank(message = "消息不能为空！") String text) {
-        botService.sendMessage(token, text);
+        botDataBashService.sendMessage(token, text);
         return new ResponsePage().ok("ok");
     }
 

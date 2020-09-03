@@ -35,49 +35,64 @@ import java.util.Random;
 public class MyEvents {
     @Autowired
     private ApiService apiService;
-    public  void addEvent(Bot bot) {
+
+    public void addEvent(Bot bot) {
         Events.registerEvents(bot, new SimpleListenerHost() {
             @EventHandler
             public ListeningStatus onGroupMessage(GroupMessageEvent event) throws MalformedURLException {
                 String msgString = event.getMessage().contentToString();
-                if (event.getGroup().getId()==790264329){
-                    event.getGroup().sendMessage(msgString);}
-                    if(msgString.startsWith("/xml")){
-                        String content =msgString.substring(5);
-                        ServiceMessage serviceMessage = new ServiceMessage(1,content);
-                        event.getGroup().sendMessage(serviceMessage);
-                    } else if ("一言".equals(msgString)) {
-                        Map<String, String> oneText = apiService.getOneText();
-                        event.getGroup().sendMessage(oneText.get("hitokoto")+"\n --"+oneText.get("from"));
-                    }else if (msgString.startsWith("二维码")){
-                        String url = apiService.getQrCode(msgString.substring(4));
-                        final Image image = event.getGroup().uploadImage(new URL(url));
-                        event.getGroup().sendMessage(image); // 发送图片
-                    }else if (msgString.startsWith("搜图")){
-                        String url = "https://pixiv.cat/";
-                        String text = msgString.substring(3);
-                        ResponsePage response = apiService.searchImage(text);
-                        if (response.getState().equals("200")){
-                            List<Integer> list = (List<Integer>)response.getData();
-                            URL url1 = new URL(url + list.get(new Random().nextInt(list.size())
-                            ) + ".jpg");
-                            HttpURLConnection connection = null;
-                            try {
-                                connection = (HttpURLConnection) url1.openConnection();
-                                //设置请求方式
-                                connection.setRequestMethod("GET");
-                                connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-                                //连接
-                                connection.connect();
-                                System.out.println(connection.getResponseCode());
-                                final Image image = event.getGroup().uploadImage(connection.getInputStream());
-                                event.getGroup().sendMessage(image); // 发送图片
-                            } catch (IOException e) {
-
-                            }
+                if (event.getGroup().getId() == 790264329) {
+                    event.getGroup().sendMessage(msgString);
+                }
+                if (msgString.startsWith("/xml")) {
+                    String content = msgString.substring(5);
+                    ServiceMessage serviceMessage = new ServiceMessage(1, content);
+                    event.getGroup().sendMessage(serviceMessage);
+                } else if ("一言".equals(msgString)) {
+                    Map<String, String> oneText = apiService.getOneText();
+                    event.getGroup().sendMessage(oneText.get("hitokoto") + "\n --" + oneText.get("from"));
+                } else if (msgString.startsWith("二维码")) {
+                    String url = apiService.getQrCode(msgString.substring(4));
+                    final Image image = event.getGroup().uploadImage(new URL(url));
+                    event.getGroup().sendMessage(image); // 发送图片
+                } else if (msgString.startsWith("搜图")) {
+                    String url = "https://pixiv.cat/";
+                    String text = msgString.substring(3);
+                    ResponsePage response = apiService.searchImage(text);
+                    if (response.getState().equals("200")) {
+                        List<Integer> list = (List<Integer>) response.getData();
+                        if (list != null) {
+                            Integer id= list.get(new Random().nextInt(list.size())
+                            );
+                            String url1 = url + id + ".jpg";
+                            String xml="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+                                    "<msg serviceID=\"1\" action=\"web\" url=\""+url1+"\" brief=\"\">\n" +
+                                    "<item>\n" +
+                                    "<title>Id:"+id+"</title>\n" +
+                                    "<picture cover=\""+url1+"\"/>\n" +
+                                    "</item>\n" +
+                                    "</msg>\n";
+                            ServiceMessage serviceMessage = new ServiceMessage(1, xml);
+                            event.getGroup().sendMessage(serviceMessage);
+//                            HttpURLConnection connection = null;
+//                            try {
+//                                connection = (HttpURLConnection) url1.openConnection();
+//                                //设置请求方式
+//                                connection.setRequestMethod("GET");
+//                                connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+//                                //连接
+//                                connection.connect();
+//                                System.out.println(connection.getResponseCode());
+//                                final Image image = event.getGroup().uploadImage(connection.getInputStream());
+//                                event.getGroup().sendMessage(image); // 发送图片
+//                            } catch (IOException e) {
+//
+//                            }
 
                         }
-                    }//
+                    }
+                }//els
+
 
 
                 return ListeningStatus.LISTENING;

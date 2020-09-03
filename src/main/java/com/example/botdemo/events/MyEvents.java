@@ -41,7 +41,7 @@ public class MyEvents {
             public ListeningStatus onGroupMessage(GroupMessageEvent event) throws MalformedURLException {
                 String msgString = event.getMessage().contentToString();
                 if (event.getGroup().getId()==790264329){
-                    event.getGroup().sendMessage(msgString);
+                    event.getGroup().sendMessage(msgString);}
                     if(msgString.startsWith("/xml")){
                         String content =msgString.substring(5);
                         ServiceMessage serviceMessage = new ServiceMessage(1,content);
@@ -79,7 +79,7 @@ public class MyEvents {
                         }
                     }//
 
-                }
+
                 return ListeningStatus.LISTENING;
             }
 

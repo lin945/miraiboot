@@ -24,7 +24,7 @@ public class BotComponent {
         bot= BotFactoryJvm.newBot(user, password, new BotConfiguration() {
             {
                 //保存设备信息到文件jar文件同一目录
-                fileBasedDeviceInfo("deviceInfo1.json");
+                fileBasedDeviceInfo("deviceInfo.json");
                 // setLoginSolver();xynw
                 // setBotLoggerSupplier();
             }

@@ -1,3 +1,3 @@
 # miraiboot
-mirai实现类似server酱
-修改com.example.botdemo.dao的账号密码
+mirai+springboot实现的qq机器人框架
+账号密码存储在application.properties

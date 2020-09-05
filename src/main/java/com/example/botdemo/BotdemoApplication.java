@@ -3,6 +3,7 @@ package com.example.botdemo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 @MapperScan("com.example.botdemo.dao")
 @SpringBootApplication
 public class BotdemoApplication {

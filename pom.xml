@@ -23,15 +23,16 @@
             <groupId>net.mamoe</groupId>
             <artifactId>mirai-core-qqandroid</artifactId>
             <version>1.2.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}\lib\mirai-core-qqandroid-1.2.2.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>net.mamoe</groupId>
             <artifactId>mirai-core</artifactId>
             <version>1.2.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}\lib\mirai-core-1.2.2.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.13.1</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

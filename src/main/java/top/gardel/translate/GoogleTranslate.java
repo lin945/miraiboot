@@ -91,7 +91,7 @@ public class GoogleTranslate {
             StringBuilder sb = new StringBuilder();
             firstElement.forEach(item -> {
                 JsonNode element = item.get(0);
-                if (element.isValueNode()) sb.append(element.asText()).append(" ");
+                if (element.isValueNode() && !element.asText().trim().equals("null")) sb.append(element.asText()).append(" ");
             });
             return sb.toString().trim();
         } catch (Exception e) {

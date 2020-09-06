@@ -91,7 +91,7 @@ public class MyEvents {
                         }
                     }
                 } else if (msgString.startsWith("trans#")) {
-                    String arg = msgString.substring(msgString.indexOf('#'));
+                    String arg = msgString.substring(msgString.indexOf('#') + 1).trim();
                     if (arg.isEmpty()) return ListeningStatus.LISTENING;
                     String query = arg.indexOf('#') != -1 ? arg.substring(arg.indexOf('#') + 1) : arg;
                     String locale = arg.indexOf('#') > 0 ? arg.substring(0, arg.indexOf('#')) : ":en";
@@ -107,7 +107,7 @@ public class MyEvents {
                     Message replyMessage = new QuoteReply(event.getSource()).plus(apiService.trans(query, targetLanguage, sourceLanguage));
                     event.getSubject().sendMessage(replyMessage);
                 } else if (msgString.startsWith("howdoi#")) {
-                    String arg = msgString.substring(msgString.indexOf('#'));
+                    String arg = msgString.substring(msgString.indexOf('#') + 1).trim();
                     if (arg.isEmpty()) return ListeningStatus.LISTENING;
                     String query = apiService.trans(arg, "en");
                     Message replyMessage = new QuoteReply(event.getSource()).plus("正在为您搜索问题：" + query);
@@ -137,7 +137,7 @@ public class MyEvents {
                         event.getSubject().sendMessage("迫害成功");
                     }
                 } else if (msgString.startsWith("名言#")) {
-                    String arg = msgString.substring(msgString.indexOf('#'));
+                    String arg = msgString.substring(msgString.indexOf('#') + 1).trim();
                     Motd motd = apiService.getMotd(arg);
                     String reply = motd == null ? "暂无" : String.format("%s\n    --- %s", motd.getText(), motd.getFrom());
                     event.getSubject().sendMessage(reply);
